@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>	</title>
+	<style type="text/css">
+		.sphere {
+			background-image: url(рр.jpg);
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			border-radius: 100px;
+			transition: all 0.8s ease-out;
+			top: 0px;
+
+		}
+		.ground {
+			background: green;
+			position: absolute;
+			width: 1200px;
+			height: 50px;
+			top:  900px;
+		}
+	</style>
+</head>
+<body style="background-image: url(backkk.jpg); ">
+
+<div class="ground">
+	
+</div> 
+<script type="text/javascript">
+    let random = function(){
+    	let rand = Math.round(Math.random() * 800)
+    	return rand
+    }
+    let topS = 0;
+    for (let i = 0;i < 10; i = i + 1){
+ 		let sphere = document.createElement('div')
+    	document.body.appendChild(sphere)
+    	sphere.classList.add("sphere")
+    	sphere.style.left = random() + "px"
+    }
+    let sphere = document.querySelectorAll(".sphere")
+    let sphereID = 0;
+
+    for(let i = 0;i < 10; i = i + 1){
+    	sphere[i].onclick = function(){
+    		sphere[i].style.display = "none";
+    		//topS = 1000;
+    	}
+    }
+    let sphereFall = function(){
+    	topS = topS + 150;
+    	sphere[sphereID].style.top = topS + "px"
+    	if(topS >= 1050){
+    		topS = 0;
+    		sphere[sphereID].style.display = "none";
+    		sphereID = sphereID + 1;
+    		if(sphereID==10){
+    			stopGame()
+    		}
+    	}
+    }
+let myInt = setInterval(sphereFall,300)
+
+ let stopGame = function(){
+ 	clearInterval(myInt);
+ }
+
+
+</script>
+</body>
+</html>
